@@ -1,4 +1,4 @@
-// goherokuname generates Heroku-like random names. Such "block-black-0231".
+// Package goherokuname generates Heroku-like random names. Such "block-black-0231".
 //
 // It supports both decimal and hexadecimal suffixes. It supports customized
 // rendering, in which the delimiter, the length of suffix and the acceptable
