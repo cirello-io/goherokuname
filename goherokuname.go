@@ -51,7 +51,7 @@ func HaikunateCustom(delimiter string, toklen int, tokchars string) string {
 		token += string(tokchars[rand.Intn(len(tokchars))])
 	}
 
-	return noun + delimiter + adjective + delimiter + token
+	return adjective + delimiter + noun + delimiter + token
 }
 
 // Haikunate generate standard Heroku-like random name, with "-" as delimiter,
