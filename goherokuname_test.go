@@ -2,17 +2,21 @@ package goherokuname
 
 import "fmt"
 
+func init() {
+	seed = 99
+}
+
 func ExampleHaikunate() {
 	fmt.Println(Haikunate())
-	// Output: waterfall-yellow-0312
+	// Output: dawn-pond-0223
 }
 
 func ExampleHaikunateHex() {
 	fmt.Println(HaikunateHex())
-	// Output: unit-red-0a12
+	// Output: dawn-pond-2a6b
 }
 
 func ExampleHaikunateCustom() {
 	fmt.Println(HaikunateCustom("+", 5, "abcd"))
-	// Output: term+twilight+abadc
+	// Output: dawn+pond+cccdb
 }
