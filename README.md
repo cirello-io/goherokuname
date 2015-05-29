@@ -5,5 +5,10 @@ To install use:
 
 `go get github.com/dericofilho/goherokuname`
 
+It contais two dictionaries, one small and one big. If you want to compile with the big one, you are going to need to use build tags:
+
+`go build -tags herokuComplete`
+
+The big dictionary is actually from Wordnet of Princeton. Please, be sure to agree with their license before using it.
 
 See documentation at [http://godoc.org/github.com/dericofilho/goherokuname](http://godoc.org/github.com/dericofilho/goherokuname).
