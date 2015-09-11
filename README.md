@@ -9,6 +9,10 @@ It contais two dictionaries, one small and one big. If you want to compile with 
 
 `go build -tags herokuComplete`
 
+or
+
+`go get -u -tags 'herokuComplete' github.com/ccirello/goherokuname/...`
+
 The big dictionary is actually from Wordnet of Princeton. Please, be sure to agree with their license before using it.
 
 See documentation at [http://godoc.org/github.com/ccirello/goherokuname](http://godoc.org/github.com/ccirello/goherokuname).
