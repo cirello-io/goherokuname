@@ -1,3 +1,12 @@
+//
+// Usage of herokuname:
+//   -digits int
+//     	how many digits after the names. (default 4)
+//   -hex
+//     	use hexadecimal values instead of decimals.
+//   -separator string
+//     	word separator. (default "-")
+//
 package main
 
 import (
