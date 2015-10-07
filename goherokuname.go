@@ -44,3 +44,35 @@ func Haikunate() string {
 func HaikunateHex() string {
 	return HaikunateCustom("-", 4, "0123456789abcdef")
 }
+
+// Ubuntu generates a Ubuntu-like random name in which the delimiter is tweakable.
+func Ubuntu(delimiter string) string {
+	var lseed int64
+	lseed = seed
+	if 0 == lseed {
+		lseed = time.Now().UnixNano()
+	}
+	r := rand.New(rand.NewSource(lseed))
+
+	letterRunes := []byte("abcdefghijklmnopqrstuvwxyz")
+	chosenLetter := letterRunes[r.Intn(len(letterRunes))]
+
+	var filteredAdjectives []string
+	for _, adjective := range adjectives {
+		if adjective[0] == chosenLetter {
+			filteredAdjectives = append(filteredAdjectives, adjective)
+		}
+	}
+
+	var filteredNouns []string
+	for _, noun := range nouns {
+		if noun[0] == chosenLetter {
+			filteredNouns = append(filteredNouns, noun)
+		}
+	}
+
+	adjective := filteredAdjectives[r.Intn(len(filteredAdjectives))]
+	noun := filteredNouns[r.Intn(len(filteredNouns))]
+
+	return adjective + delimiter + noun
+}
