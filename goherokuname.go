@@ -6,6 +6,7 @@
 package goherokuname
 
 import (
+	"log"
 	"math/rand"
 	"time"
 )
@@ -46,7 +47,7 @@ func HaikunateHex() string {
 }
 
 // Ubuntu generates a Ubuntu-like random name in which the delimiter is tweakable.
-func Ubuntu(delimiter string) string {
+func Ubuntu(delimiter, letter string) string {
 	var lseed int64
 	lseed = seed
 	if 0 == lseed {
@@ -54,21 +55,27 @@ func Ubuntu(delimiter string) string {
 	}
 	r := rand.New(rand.NewSource(lseed))
 
-	letterRunes := []byte("abcdefghijklmnopqrstuvwxyz")
-	chosenLetter := letterRunes[r.Intn(len(letterRunes))]
-
 	var filteredAdjectives []string
+	var filteredNouns []string
+
+	chosenLetter := letter[0]
+
+	filteredAdjectives = []string{}
 	for _, adjective := range adjectives {
 		if adjective[0] == chosenLetter {
 			filteredAdjectives = append(filteredAdjectives, adjective)
 		}
 	}
 
-	var filteredNouns []string
+	filteredNouns = []string{}
 	for _, noun := range nouns {
 		if noun[0] == chosenLetter {
 			filteredNouns = append(filteredNouns, noun)
 		}
+	}
+
+	if len(filteredAdjectives) == 0 || len(filteredNouns) == 0 {
+		log.Fatalf("could not find words in dictionary starting with \"%s\" for adjective and/or noun", string(chosenLetter))
 	}
 
 	adjective := filteredAdjectives[r.Intn(len(filteredAdjectives))]

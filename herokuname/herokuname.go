@@ -14,13 +14,13 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dericofilho/goherokuname"
+	"github.com/ccirello/goherokuname"
 )
 
 var hex = flag.Bool(`hex`, false, `use hexadecimal values instead of decimals.`)
 var digits = flag.Int(`digits`, 4, `how many digits after the names.`)
 var separator = flag.String(`separator`, "-", `word separator.`)
-var ubuntu = flag.Bool(`ubuntu`, false, `match initial letters (Ubuntu-style).`)
+var ubuntu = flag.String(`ubuntu`, "", `match initial letters (Ubuntu-style).`)
 
 func main() {
 	flag.Parse()
@@ -30,8 +30,8 @@ func main() {
 		tokchars = tokchars + "abcdef"
 	}
 
-	if *ubuntu {
-		fmt.Println(goherokuname.Ubuntu(*separator))
+	if *ubuntu != "" {
+		fmt.Println(goherokuname.Ubuntu(*separator, *ubuntu))
 	} else {
 		fmt.Println(goherokuname.HaikunateCustom(*separator, *digits, tokchars))
 	}
