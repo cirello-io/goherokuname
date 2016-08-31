@@ -6,22 +6,25 @@
 package goherokuname
 
 import (
-	"log"
+	"fmt"
 	"math/rand"
 	"time"
 )
 
 var seed int64
 
-// HaikunateCustom generates a Heroku-like random name in which the delimiter,
-// length and acceptable characters for suffix are tweakable.
-func HaikunateCustom(delimiter string, toklen int, tokchars string) string {
-	var lseed int64
-	lseed = seed
+func randomSource() *rand.Rand {
+	lseed := seed
 	if 0 == lseed {
 		lseed = time.Now().UnixNano()
 	}
-	r := rand.New(rand.NewSource(lseed))
+	return rand.New(rand.NewSource(lseed))
+}
+
+// HaikunateCustom generates a Heroku-like random name in which the delimiter,
+// length and acceptable characters for suffix are tweakable.
+func HaikunateCustom(delimiter string, toklen int, tokchars string) string {
+	r := randomSource()
 
 	noun := nouns[r.Intn(len(nouns))]
 	adjective := adjectives[r.Intn(len(adjectives))]
@@ -47,27 +50,18 @@ func HaikunateHex() string {
 }
 
 // Ubuntu generates a Ubuntu-like random name in which the delimiter is tweakable.
-func Ubuntu(delimiter, letter string) string {
-	var lseed int64
-	lseed = seed
-	if 0 == lseed {
-		lseed = time.Now().UnixNano()
-	}
-	r := rand.New(rand.NewSource(lseed))
-
-	var filteredAdjectives []string
-	var filteredNouns []string
-
+func Ubuntu(delimiter, letter string) (string, error) {
+	r := randomSource()
 	chosenLetter := letter[0]
 
-	filteredAdjectives = []string{}
+	var filteredAdjectives, filteredNouns []string
+
 	for _, adjective := range adjectives {
 		if adjective[0] == chosenLetter {
 			filteredAdjectives = append(filteredAdjectives, adjective)
 		}
 	}
 
-	filteredNouns = []string{}
 	for _, noun := range nouns {
 		if noun[0] == chosenLetter {
 			filteredNouns = append(filteredNouns, noun)
@@ -75,11 +69,11 @@ func Ubuntu(delimiter, letter string) string {
 	}
 
 	if len(filteredAdjectives) == 0 || len(filteredNouns) == 0 {
-		log.Fatalf("could not find words in dictionary starting with \"%s\" for adjective and/or noun", string(chosenLetter))
+		return "", fmt.Errorf("could not find words in dictionary starting with \"%c\" for adjective and/or noun", chosenLetter)
 	}
 
 	adjective := filteredAdjectives[r.Intn(len(filteredAdjectives))]
 	noun := filteredNouns[r.Intn(len(filteredNouns))]
 
-	return adjective + delimiter + noun
+	return adjective + delimiter + noun, nil
 }

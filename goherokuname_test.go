@@ -23,6 +23,21 @@ func ExampleHaikunateCustom() {
 	// Output: dawn+pond+cccdb
 }
 
+func ExampleUbuntu() {
+	seed = 99
+	out, _ := Ubuntu("-", "d")
+	fmt.Println(out)
+	// Output: damp-dawn
+}
+
+func TestUbuntuInvalidLetter(t *testing.T) {
+	seed = 99
+	_, err := Ubuntu("-", "1")
+	if err == nil {
+		t.Errorf("expected error missing")
+	}
+}
+
 func BenchmarkHaikunateDeterministic(b *testing.B) {
 	seed = 99
 	for i := 0; i < b.N; i++ {
