@@ -5,9 +5,10 @@ import (
 	"testing"
 )
 
-func init(){
+func init() {
 	seed = 99
 }
+
 func ExampleHaikunate() {
 	fmt.Println(Haikunate())
 	// Output: dawn-pond-0223

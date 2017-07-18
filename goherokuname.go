@@ -51,26 +51,22 @@ func HaikunateHex() string {
 
 // Ubuntu generates a Ubuntu-like random name in which the delimiter is tweakable.
 func Ubuntu(delimiter, letter string) (string, error) {
-	r := randomSource()
+
 	chosenLetter := letter[0]
 
-	var filteredAdjectives, filteredNouns []string
-
-	for _, adjective := range adjectives {
-		if adjective[0] == chosenLetter {
-			filteredAdjectives = append(filteredAdjectives, adjective)
-		}
+	adjIdx, ok := adjectivesIdx[chosenLetter]
+	if !ok {
+		return "", fmt.Errorf("could not find adjectives in dictionary starting with \"%c\"", chosenLetter)
 	}
 
-	for _, noun := range nouns {
-		if noun[0] == chosenLetter {
-			filteredNouns = append(filteredNouns, noun)
-		}
+	nounIdx, ok := nounsIdx[chosenLetter]
+	if !ok {
+		return "", fmt.Errorf("could not find nouns in dictionary starting with \"%c\"", chosenLetter)
 	}
 
-	if len(filteredAdjectives) == 0 || len(filteredNouns) == 0 {
-		return "", fmt.Errorf("could not find words in dictionary starting with \"%c\" for adjective and/or noun", chosenLetter)
-	}
+	r := randomSource()
+	filteredAdjectives := adjectives[adjIdx[0] : adjIdx[1]+1]
+	filteredNouns := nouns[nounIdx[0] : nounIdx[1]+1]
 
 	adjective := filteredAdjectives[r.Intn(len(filteredAdjectives))]
 	noun := filteredNouns[r.Intn(len(filteredNouns))]
