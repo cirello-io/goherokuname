@@ -8,30 +8,17 @@ package goherokuname // import "cirello.io/goherokuname"
 import (
 	"fmt"
 	"math/rand"
-	"time"
 )
-
-var seed int64
-
-func randomSource() *rand.Rand {
-	lseed := seed
-	if 0 == lseed {
-		lseed = time.Now().UnixNano()
-	}
-	return rand.New(rand.NewSource(lseed))
-}
 
 // HaikunateCustom generates a Heroku-like random name in which the delimiter,
 // length and acceptable characters for suffix are tweakable.
 func HaikunateCustom(delimiter string, toklen int, tokchars string) string {
-	r := randomSource()
-
-	noun := nouns[r.Intn(len(nouns))]
-	adjective := adjectives[r.Intn(len(adjectives))]
+	noun := nouns[rand.Intn(len(nouns))]
+	adjective := adjectives[rand.Intn(len(adjectives))]
 
 	token := ""
 	for i := 0; i < toklen; i++ {
-		token += string(tokchars[r.Intn(len(tokchars))])
+		token += string(tokchars[rand.Intn(len(tokchars))])
 	}
 
 	return adjective + delimiter + noun + delimiter + token
@@ -52,8 +39,7 @@ func HaikunateHex() string {
 // Ubuntu generates a Ubuntu-like random name in which the delimiter is tweakable.
 func Ubuntu(delimiter, letter string) (string, error) {
 	if len(letter) == 0 {
-		r := randomSource()
-		noun := nouns[r.Intn(len(nouns))]
+		noun := nouns[rand.Intn(len(nouns))]
 		letter = noun
 	}
 	chosenLetter := letter[0]
@@ -68,12 +54,11 @@ func Ubuntu(delimiter, letter string) (string, error) {
 		return "", fmt.Errorf("could not find nouns in dictionary starting with \"%c\"", chosenLetter)
 	}
 
-	r := randomSource()
 	filteredAdjectives := adjectives[adjIdx[0] : adjIdx[1]+1]
 	filteredNouns := nouns[nounIdx[0] : nounIdx[1]+1]
 
-	adjective := filteredAdjectives[r.Intn(len(filteredAdjectives))]
-	noun := filteredNouns[r.Intn(len(filteredNouns))]
+	adjective := filteredAdjectives[rand.Intn(len(filteredAdjectives))]
+	noun := filteredNouns[rand.Intn(len(filteredNouns))]
 
 	return adjective + delimiter + noun, nil
 }

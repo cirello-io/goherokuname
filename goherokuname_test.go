@@ -2,11 +2,12 @@ package goherokuname
 
 import (
 	"fmt"
+	"math/rand"
 	"testing"
 )
 
 func init() {
-	seed = 99
+	rand.Seed(99)
 }
 
 func ExampleHaikunate() {
@@ -16,18 +17,18 @@ func ExampleHaikunate() {
 
 func ExampleHaikunateHex() {
 	fmt.Println(HaikunateHex())
-	// Output: dawn-pond-2a6b
+	// Output: delicate-dawn-9869
 }
 
 func ExampleHaikunateCustom() {
 	fmt.Println(HaikunateCustom("+", 5, "abcd"))
-	// Output: dawn+pond+cccdb
+	// Output: tiny+limit+ddadc
 }
 
 func ExampleUbuntu() {
 	out, _ := Ubuntu("-", "d")
 	fmt.Println(out)
-	// Output: damp-dawn
+	// Output: dawn-dawn
 }
 
 func TestUbuntuInvalidLetter(t *testing.T) {
