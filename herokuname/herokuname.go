@@ -90,9 +90,10 @@ func serveHerokuShort(w http.ResponseWriter, r *http.Request) {
 
 func serveIndex(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, `<html><body>
+	<h1>Name generator as a service</h1>
 	<ul>
 		<li><a href="/about">about</li>
-		<li><a href="/ubuntu">ubuntu (e.g.: propellant-pomatomus)</li>
+		<li><a href="/ubuntu/">ubuntu (e.g.: propellant-pomatomus)</li>
 		<li><a href="/long">long (e.g.: overnice-minah-86758bf5)</li>
 		<li><a href="/short">short (e.g.: cutaneal-muhammadanism-313e)</li>
 	</ul>
