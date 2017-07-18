@@ -36,7 +36,7 @@ func BenchmarkUbuntu(b *testing.B) {
 	var resp string
 	var err error
 	for i := 0; i < b.N; i++ {
-		resp, err = goherokuname.Ubuntu("-", "j")
+		resp, err = goherokuname.Ubuntu("-", "a")
 		if err != nil {
 			b.Fatal(err)
 		}

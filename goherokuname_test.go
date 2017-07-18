@@ -1,9 +1,11 @@
-package goherokuname
+package goherokuname_test
 
 import (
 	"fmt"
 	"math/rand"
 	"testing"
+
+	"cirello.io/goherokuname"
 )
 
 func init() {
@@ -11,28 +13,28 @@ func init() {
 }
 
 func ExampleHaikunate() {
-	fmt.Println(Haikunate())
+	fmt.Println(goherokuname.Haikunate())
 	// Output: dawn-pond-0223
 }
 
 func ExampleHaikunateHex() {
-	fmt.Println(HaikunateHex())
+	fmt.Println(goherokuname.HaikunateHex())
 	// Output: delicate-dawn-9869
 }
 
 func ExampleHaikunateCustom() {
-	fmt.Println(HaikunateCustom("+", 5, "abcd"))
+	fmt.Println(goherokuname.HaikunateCustom("+", 5, "abcd"))
 	// Output: tiny+limit+ddadc
 }
 
 func ExampleUbuntu() {
-	out, _ := Ubuntu("-", "d")
+	out, _ := goherokuname.Ubuntu("-", "d")
 	fmt.Println(out)
 	// Output: dawn-dawn
 }
 
 func TestUbuntuInvalidLetter(t *testing.T) {
-	_, err := Ubuntu("-", "1")
+	_, err := goherokuname.Ubuntu("-", "1")
 	if err == nil {
 		t.Errorf("expected error missing")
 	}
