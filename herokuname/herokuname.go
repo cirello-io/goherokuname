@@ -34,9 +34,11 @@ func main() {
 	flag.Parse()
 
 	if *listenHTTP != "" {
+		http.HandleFunc("/about", serveAbout)
 		http.HandleFunc("/ubuntu/", serveUbuntu)
 		http.HandleFunc("/long", serveHerokuLong)
-		http.HandleFunc("/", serveHerokuShort)
+		http.HandleFunc("/short", serveHerokuShort)
+		http.HandleFunc("/", serveIndex)
 		if err := http.ListenAndServe(*listenHTTP, nil); err != nil {
 			log.SetPrefix("")
 			log.SetFlags(0)
@@ -64,6 +66,10 @@ func main() {
 	os.Exit(0)
 }
 
+func serveAbout(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, "http://godoc.org/cirello.io/goherokuname", http.StatusSeeOther)
+}
+
 func serveUbuntu(w http.ResponseWriter, r *http.Request) {
 	letter := strings.TrimPrefix(r.URL.String(), "/ubuntu/")
 	name, err := goherokuname.Ubuntu("-", letter)
@@ -80,4 +86,15 @@ func serveHerokuLong(w http.ResponseWriter, r *http.Request) {
 
 func serveHerokuShort(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, goherokuname.HaikunateHex())
+}
+
+func serveIndex(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, `<html><body>
+	<ul>
+		<li><a href="/about">about</li>
+		<li><a href="/ubuntu">ubuntu (e.g.: propellant-pomatomus)</li>
+		<li><a href="/long">long (e.g.: overnice-minah-86758bf5)</li>
+		<li><a href="/short">short (e.g.: cutaneal-muhammadanism-313e)</li>
+	</ul>
+	</body></html>`)
 }
