@@ -2,7 +2,7 @@
 
 package goherokuname
 
-var adjectives = [...]string{
+var adjectives = []string{
 	"abactinal",
 	"abandoned",
 	"abashed",

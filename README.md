@@ -8,13 +8,22 @@ To install use:
 
 `go get -u cirello.io/goherokuname/...`
 
-It contais two dictionaries, one small and one big. If you want to compile with the big one, you are going to need to use build tags:
+It contais three dictionaries, one small, one big and one of short words. If you want to compile with the big one, you are going to need to use build tags:
 
 `go build -tags herokuComplete`
 
 or
 
 `go get -u -tags 'herokuComplete' cirello.io/goherokuname/...`
+
+If you want the one with simple words:
+
+`go build -tags herokuSimple`
+
+or
+
+`go get -u -tags 'herokuSimple' cirello.io/goherokuname/...`
+
 
 The big dictionary is actually from Wordnet of Princeton. Please, be sure to agree with their license before using it.
 

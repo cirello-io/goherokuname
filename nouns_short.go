@@ -1,8 +1,8 @@
-// +build !herokuComplete
+// +build !herokuComplete,!herokuSimple
 
 package goherokuname
 
-var nouns = [...]string{
+var nouns = []string{
 	"art", "atom", "band", "bar", "base", "bird", "block", "boat", "bonus",
 	"bread", "breeze", "brook", "bush", "butterfly", "cake", "cell",
 	"cherry", "cloud", "coke", "credit", "darkness", "dawn", "dew", "disk",

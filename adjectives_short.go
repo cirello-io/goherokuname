@@ -1,8 +1,8 @@
-// +build !herokuComplete
+// +build !herokuComplete,!herokuSimple
 
 package goherokuname
 
-var adjectives = [...]string{
+var adjectives = []string{
 	"aged", "ancient", "autumn", "billowing", "bitter", "black", "blue",
 	"bold", "broad", "broken", "calm", "cold", "cool", "crimson", "curly",
 	"damp", "dark", "dawn", "delicate", "divine", "dry", "dry", "empty",

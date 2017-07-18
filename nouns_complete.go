@@ -2,7 +2,7 @@
 
 package goherokuname
 
-var nouns = [...]string{
+var nouns = []string{
 	"aachen",
 	"aalborg",
 	"aalii",
