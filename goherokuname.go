@@ -51,7 +51,11 @@ func HaikunateHex() string {
 
 // Ubuntu generates a Ubuntu-like random name in which the delimiter is tweakable.
 func Ubuntu(delimiter, letter string) (string, error) {
-
+	if len(letter) == 0 {
+		r := randomSource()
+		noun := nouns[r.Intn(len(nouns))]
+		letter = noun
+	}
 	chosenLetter := letter[0]
 
 	adjIdx, ok := adjectivesIdx[chosenLetter]
