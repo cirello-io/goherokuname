@@ -17,12 +17,18 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	"cirello.io/goherokuname"
 )
+
+func init() {
+	rand.Seed(time.Now().UTC().UnixNano())
+}
 
 var hex = flag.Bool(`hex`, false, `use hexadecimal values instead of decimals.`)
 var digits = flag.Int(`digits`, 4, `how many digits after the names.`)
