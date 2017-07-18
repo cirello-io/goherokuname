@@ -3,7 +3,7 @@
 // It supports both decimal and hexadecimal suffixes. It supports customized
 // rendering, in which the delimiter, the length of suffix and the acceptable
 // characters for suffix are tweakable.
-package goherokuname
+package goherokuname // import "cirello.io/goherokuname"
 
 import (
 	"fmt"
