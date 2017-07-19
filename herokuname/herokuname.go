@@ -44,6 +44,7 @@ func main() {
 		http.HandleFunc("/ubuntu/", serveUbuntu)
 		http.HandleFunc("/long", serveHerokuLong)
 		http.HandleFunc("/short", serveHerokuShort)
+		http.HandleFunc("/simple", serveHerokuSimple)
 		http.HandleFunc("/", serveIndex)
 		if err := http.ListenAndServe(*listenHTTP, nil); err != nil {
 			log.SetPrefix("")
@@ -94,6 +95,10 @@ func serveHerokuShort(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, goherokuname.HaikunateHex())
 }
 
+func serveHerokuSimple(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, goherokuname.HaikunateCustom("-", 0, ""))
+}
+
 func serveIndex(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, `<html><body>
 	<h1>Name generator as a service</h1>
@@ -102,6 +107,7 @@ func serveIndex(w http.ResponseWriter, r *http.Request) {
 		<li><a href="/ubuntu/">ubuntu (e.g.: propellant-pomatomus)</li>
 		<li><a href="/long">long (e.g.: overnice-minah-86758bf5)</li>
 		<li><a href="/short">short (e.g.: cutaneal-muhammadanism-313e)</li>
+		<li><a href="/simple">simple (e.g.: black-block)</li>
 	</ul>
 	</body></html>`)
 }
