@@ -1,7 +1,9 @@
 package goherokuname
 
-var adjectivesIdx map[byte][]int
-var nounsIdx map[byte][]int
+var (
+	adjectivesIdx map[byte][]int
+	nounsIdx      map[byte][]int
+)
 
 func init() {
 	adjectivesIdx = extractIndexes(adjectives)
