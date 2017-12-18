@@ -6,7 +6,7 @@ Heroku-like Random Names in Go
 
 To install use:
 
-`go get -u cirello.io/goherokuname/...`
+`go get -f -u cirello.io/goherokuname/...`
 
 It contais three dictionaries, one small, one big and one of simple words. If you want to compile with the big one, you are going to need to use build tags:
 
@@ -14,7 +14,7 @@ It contais three dictionaries, one small, one big and one of simple words. If yo
 
 or
 
-`go get -u -tags 'herokuComplete' cirello.io/goherokuname/...`
+`go get -f -u -tags 'herokuComplete' cirello.io/goherokuname/...`
 
 If you want the one with simple words:
 
@@ -22,7 +22,7 @@ If you want the one with simple words:
 
 or
 
-`go get -u -tags 'herokuSimple' cirello.io/goherokuname/...`
+`go get -f -u -tags 'herokuSimple' cirello.io/goherokuname/...`
 
 
 The big dictionary is actually from Wordnet of Princeton. Please, be sure to agree with their license before using it.
