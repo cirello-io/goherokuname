@@ -28,5 +28,3 @@ or
 The big dictionary is actually from Wordnet of Princeton. Please, be sure to agree with their license before using it.
 
 See documentation at [http://godoc.org/cirello.io/goherokuname](http://godoc.org/cirello.io/goherokuname).
-
-You can use the name generator as a service, check [http://heroku.cirello.io/](http://heroku.cirello.io/).
