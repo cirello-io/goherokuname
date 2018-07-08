@@ -1,3 +1,4 @@
+// Comand herokuname runs the goherokuname package in CLI.
 //
 // Usage of herokuname:
 //   -digits int
