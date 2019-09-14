@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// +build !herokuComplete,!herokuSimple
-
 package goherokuname
 
 var nouns = []string{
