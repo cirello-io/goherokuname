@@ -1,7 +1,5 @@
 # goherokuname
 
-[![Build Status](https://travis-ci.org/cirello-io/goherokuname.svg?branch=master)](https://travis-ci.org/cirello-io/goherokuname)
-
 Heroku-like Random Names in Go
 
 To install use:
